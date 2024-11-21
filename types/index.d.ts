@@ -5,3 +5,8 @@ export interface AppCardProps {
   url?: string;
   description: string;
 }
+
+export type ProconsState = {
+  pro: string[];
+  cons: string[];
+}
