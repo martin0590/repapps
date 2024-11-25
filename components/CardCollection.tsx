@@ -4,7 +4,7 @@ import { links } from "@/constants";
 
 const CardCollection = () => {
   return (
-    <section id="card-collection" className="flex flex-wrap">
+    <section id="card-collection" className="flex gap-6 justify-center flex-wrap sm:justify-normal">
       {links.map(({ url, id, image, description, title }) => (
         <AppCard
           key={id}

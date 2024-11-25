@@ -12,23 +12,26 @@ const ProConsPage = () => {
 
   const handleAddPro = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      if(e.currentTarget.id === "add-pro"){
+      e.preventDefault();
+      if (e.currentTarget.id === "add-pro") {
         if (proState === "") return;
-  
+
         setProconsState({
           ...proconsState,
           pro: [...proconsState.pro, proState],
         });
-  
+
         setProState("");
-      }else{
+      }
+
+      if (e.currentTarget.id === "add-cons") {
         if (consState === "") return;
-  
+
         setProconsState({
           ...proconsState,
           cons: [...proconsState.cons, consState],
         });
-  
+
         setConsState("");
       }
     }
@@ -50,7 +53,7 @@ const ProConsPage = () => {
         <div>
           <h1 className="text-green-500 font-bold text-4xl text-center">PRO</h1>
         </div>
-        <ul className="list-outside list-disc marker:text-green-500 ms-5 self-start flex flex-col gap-2">
+        <ul className="list-outside list-disc marker:text-green-500 ms-5 self-start flex flex-col gap-2 mt-4">
           {proconsState.pro.map((pro, index) => (
             <li key={index} className="break-all text-2xl">
               {pro}
@@ -60,7 +63,7 @@ const ProConsPage = () => {
       </div>
       {/* cons */}
       <div className="pt-2 pl-2 border-r border-r-slate-700 flex flex-col items-center gap-2 relative">
-      <input
+        <input
           value={consState}
           onKeyDown={handleAddPro}
           onChange={(e) => setConsState(e.target.value)}
@@ -71,7 +74,7 @@ const ProConsPage = () => {
           placeholder="Add Cons"
         />
         <h1 className="text-red-500 font-bold text-4xl text-center">CONS</h1>
-        <ul className="list-outside marker:text-red-500 list-disc ms-5 self-start flex flex-col gap-2">
+        <ul className="list-outside marker:text-red-500 list-disc ms-5 self-start flex flex-col gap-2 mt-4">
           {proconsState.cons.map((cons, index) => (
             <li key={index} className="break-all text-2xl">
               {cons}
