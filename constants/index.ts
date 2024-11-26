@@ -14,3 +14,5 @@ export const links = [
     description: 'Crea una lista de ventajas y desventajas de lo que quieras.'
   }
 ]
+
+export const wordStyles = ['capitalize', 'uppercase', 'lowercase']
