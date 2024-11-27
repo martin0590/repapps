@@ -1,6 +1,5 @@
 import { wordStyles } from '@/constants'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
 
 const SentenceBreaker = ({ sentence, setSentence }: { sentence: string, setSentence: React.Dispatch<React.SetStateAction<string>> }) => {
 
@@ -37,23 +36,23 @@ const SentenceBreaker = ({ sentence, setSentence }: { sentence: string, setSente
   }
 
   return (
-    <div>
-        <div className="flex  flex-col gap-2">
+    <div className='flex flex-col gap-4'>
+        <div className="flex  flex-col gap-3">
           {sentence && sentence.split(' ').map((word, index) => (
-            <div key={index} className='flex gap-4 items-center'>
-              <span className="">{word}</span>
+            <div key={index} className='flex gap-4 items-center justify-between'>
+              <span className="font-semibold">{word}</span>
               <div className='flex gap-2'>
-                <button onClick={() => wordTransform('capitalize', index)} className={` border border-gray-500 p-2 rounded-lg`}>{wordStyles[0]}</button>
-                <button onClick={() => wordTransform('uppercase', index)} className={` border border-gray-500 p-2 rounded-lg`}>{wordStyles[1]}</button>
-                <button onClick={() => wordTransform('lowercase', index)} className={` border border-gray-500 p-2 rounded-lg`}>{wordStyles[2]}</button>
+                <button onClick={() => wordTransform('capitalize', index)} className={`hover:bg-slate-700 border border-gray-500 p-2 rounded-lg`}>{wordStyles[0]}</button>
+                <button onClick={() => wordTransform('uppercase', index)} className={`hover:bg-slate-700 border border-gray-500 p-2 rounded-lg`}>{wordStyles[1]}</button>
+                <button onClick={() => wordTransform('lowercase', index)} className={`hover:bg-slate-700 border border-gray-500 p-2 rounded-lg`}>{wordStyles[2]}</button>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-2 gap-4 flex justify-between items-center">
-          <button onClick={capitalizeALlWords} className={` border border-gray-500 p-2 rounded-lg`}>{wordStyles[0]}</button>
-          <p className={`mt-4`}>{sentence}</p>
-          <button onClick={handleCopyToClipboardButton}>
+        <button onClick={capitalizeALlWords} className={`hover:bg-slate-700 border border-gray-300 p-2 rounded-lg  w-full`}>Capitalize All</button>
+        <div className="flex justify-between items-center ">
+          <p className={` bg-slate-700 font-semibold p-2 rounded-lg rounded-r-none w-full`}>{sentence}</p>
+          <button className='p-2 bg-slate-700 rounded-lg rounded-l-none hover:bg-slate-700' onClick={handleCopyToClipboardButton}>
           <Image
             src={'/svgs/copyText.svg'}
             width={25}
