@@ -12,6 +12,12 @@ export const links = [
     image: '/images/procons.png',
     url: '/procons',
     description: 'Crea una lista de ventajas y desventajas de lo que quieras.'
+  },{
+    id: 3,
+    title: 'Text Transform',
+    image: '/images/texttransform.png',
+    url: '/texttransform',
+    description: 'capitaliza, minúscula y mayúscula tu texto.'
   }
 ]
 
