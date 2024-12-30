@@ -6,7 +6,7 @@ import React from "react";
 const AppCard = ({ url, title, image, description }: AppCardProps) => {
   return (
     <div className="w-[250px] flex flex-col gap-4 text-gray-200 rounded-lg group p-2 hover:outline outline-1 outline-gray-300">
-      <Link href={url!} target="_blank">
+      <Link href={url!}>
         <Image
           src={image}
           alt={`app ${title} image`}
