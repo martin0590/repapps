@@ -8,7 +8,7 @@ const Hero = () => {
       <h2 className="text-5xl sm:text-6xl font-semibold">Todas las apps</h2>
       <span className="text-4xl sm:text-5xl font-semibold">en un solo lugar</span>
       <p className="flex text-center leading-relaxed">
-      Aquí encontraras todas las aplicaciones <br/> que iré creando a lo largo de mi aprendizaje. <br/> Haz click en tu aplicación preferida  y disfrutala.
+      Aquí encontraras todas las aplicaciones <br/> que iré creando a lo largo de mi aprendizaje. <br/> Haz click en tu aplicación preferida  para utilizarla.
       </p>
       <Link
         href="#card-collection"

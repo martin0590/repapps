@@ -1,10 +1,11 @@
 "use client";
+import { TotalRepeated, TotalState } from "@/types";
 import React, { useState } from "react";
 
 const Calculated = () => {
   const [inputs, setInputs] = useState("");
   const [error, setError] = useState("")
-  const [total, setTotal] = useState<{ total: number; numbers: string[], repeated: {[number: string]: number} }>({
+  const [total, setTotal] = useState<TotalState>({
     total: 0,
     numbers: [],
     repeated: {}
@@ -21,7 +22,7 @@ const Calculated = () => {
           return
         }
         const numbersArrRepeatedObj = numbersArr.reduce(
-          (acc: { [key: string]: number }, num) => ({ ...acc, [num]: (acc[num] || 0) + 1 }), total.repeated
+          (acc: TotalRepeated, num) => ({ ...acc, [num]: (acc[num] || 0) + 1 }), total.repeated
         );
         const filteredNumbersArr: string[] = []
         numbersArr.forEach((num) => {
@@ -71,8 +72,8 @@ const Calculated = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center px-2">
-      <h1 className="text-5xl uppercase">calculated</h1>
+    <div className="flex flex-col gap-4 justify-center items-center px-2 pt-12 md:px-64">
+      <h1 className="text-5xl uppercase pb-6">calculated</h1>
       <section className="w-full flex flex-col gap-2">
         <input
           className="text-gray-800 rounded p-2 w-full text-lg font-semibold placeholder:text-sm"

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const Header = () => {
+const NavBar = () => {
   return (
     <nav className='flex justify-between items-center px-6 py-4'>
       <Link href={'/'}>
@@ -11,4 +11,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default NavBar
