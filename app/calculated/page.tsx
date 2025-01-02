@@ -4,9 +4,10 @@ import React, { useState } from "react";
 const Calculated = () => {
   const [inputs, setInputs] = useState("");
   const [error, setError] = useState("")
-  const [total, setTotal] = useState<{ total: number; numbers: string[], repeated?: {[number: string]: number} }>({
+  const [total, setTotal] = useState<{ total: number; numbers: string[], repeated: {[number: string]: number} }>({
     total: 0,
     numbers: [],
+    repeated: {}
   })
 
   const handleInput = (e: React.KeyboardEvent) => {
@@ -19,11 +20,22 @@ const Calculated = () => {
           setError("Uno o mas numeros estan mal")
           return
         }
-        
+        const numbersArrRepeatedObj = numbersArr.reduce(
+          (acc: { [key: string]: number }, num) => ({ ...acc, [num]: (acc[num] || 0) + 1 }), total.repeated
+        );
+        const filteredNumbersArr: string[] = []
+        numbersArr.forEach((num) => {
+          if (numbersArrRepeatedObj[num] === 1) {
+            filteredNumbersArr.push(num)
+          }
+        })
 
         setTotal({
           total: Number(sumTotal),
-          numbers: [...total.numbers, ...numbersArr]
+          numbers: [...total.numbers, ...filteredNumbersArr],
+          repeated: {
+            ...numbersArrRepeatedObj
+          }
         })
       }else{
         const sumTotal = Number(inputs) + total.total
@@ -31,9 +43,17 @@ const Calculated = () => {
           setError("Uno o mas numeros estan mal")
           return
         }
+        const repeatedObj = {
+          [inputs]: (total.repeated[inputs] || 0) + 1
+        }
+        const numberArr = repeatedObj[inputs] === 1 ? [inputs] : []
         setTotal({
           total: sumTotal,
-          numbers: [...total.numbers, inputs]
+          numbers: [...total.numbers, ...numberArr],
+          repeated: {
+            ...total.repeated,
+            ...repeatedObj
+          }
         })
       }
       setError("")
@@ -45,7 +65,8 @@ const Calculated = () => {
   const handleClearTable = () => {
     setTotal({
       total: 0,
-      numbers: []
+      numbers: [],
+      repeated: {}
     })
   }
 
@@ -84,11 +105,12 @@ const Calculated = () => {
           <tbody className="">
 
             {total.numbers && total.numbers.map((num, idx) => (
-              <tr key={idx}>
-                <td>
-                  <input className="w-full text-gray-100 text-center hover:bg-gray-500 cursor-pointer bg-gray-950 placeholder:text-center outline-none" name="identifier" id="identifier" placeholder="--" />
+              <tr key={idx} className="group ">
+                <td className="">
+                  <input className="w-full group-hover:bg-gray-900 text-gray-50 text-center  hover:text-gray-50 cursor-pointer bg-gray-950 placeholder:text-center palceholder:text-gray-50 outline-none" name="identifier" id="identifier" placeholder="--" />
                 </td>
-                <td className="text-center text-gray-100">{num}</td>
+                <td className="text-center text-gray-50 group-hover:bg-gray-900">{num}</td>
+                <td className="text-center text-gray-50 group-hover:bg-gray-900">x{total.repeated[num]}</td>
               </tr>  
             ))}
 
