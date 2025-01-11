@@ -70,7 +70,7 @@ const Calculated = () => {
       repeated: {}
     })
 
-    window.alert("Tabla Limpia") //clear table toast
+    console.log("Aqui habia otra cosa")
   }
 
   return (
