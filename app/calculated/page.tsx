@@ -69,6 +69,8 @@ const Calculated = () => {
       numbers: [],
       repeated: {}
     })
+
+    window.alert("Tabla Limpia") //clear table toast
   }
 
   return (
