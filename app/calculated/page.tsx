@@ -1,10 +1,10 @@
 "use client";
 import { TotalRepeated, TotalState } from "@/types";
 import React, { useState } from "react";
+import toast from 'react-hot-toast';
 
 const Calculated = () => {
   const [inputs, setInputs] = useState("");
-  const [error, setError] = useState("")
   const [total, setTotal] = useState<TotalState>({
     total: 0,
     numbers: [],
@@ -13,21 +13,30 @@ const Calculated = () => {
 
   const handleInput = (e: React.KeyboardEvent) => {
     if(e.key === "Enter"){
+      if(inputs === "" || /[  ]{2,}/g.test(inputs)) {
+        toast.error("uno o mas espacios estan mal")
+        return
+      }
       if(inputs.trim().includes(" ")){
         const numbersArr = inputs.split(" ").filter(num => num !== '');
+        // console.log(numbersArr)
         const numbersArrTotal = numbersArr.reduce((a, b) => Number(a) + Number(b), 0);
         const sumTotal = String(total.total + numbersArrTotal)
         if(isNaN(Number(sumTotal))) {
-          setError("Uno o mas numeros estan mal")
+          toast.error("Uno o mas numeros estan mal")
           return
         }
         const numbersArrRepeatedObj = numbersArr.reduce(
           (acc: TotalRepeated, num) => ({ ...acc, [num]: (acc[num] || 0) + 1 }), total.repeated
         );
         const filteredNumbersArr: string[] = []
-        numbersArr.forEach((num) => {
+        numbersArr.forEach((num) => {                 // 12 12    ---  {12: 2}
           if (numbersArrRepeatedObj[num] === 1) {
             filteredNumbersArr.push(num)
+          }else{
+            if(!filteredNumbersArr.includes(num) && !total.numbers.includes(num)){
+              filteredNumbersArr.push(num)
+            }
           }
         })
 
@@ -38,10 +47,11 @@ const Calculated = () => {
             ...numbersArrRepeatedObj
           }
         })
+        toast.success("Numeros agregado")
       }else{
         const sumTotal = Number(inputs) + total.total
         if(isNaN(Number(sumTotal))) {
-          setError("Uno o mas numeros estan mal")
+          toast.error("Uno o mas numeros estan mal")
           return
         }
         const repeatedObj = {
@@ -56,8 +66,8 @@ const Calculated = () => {
             ...repeatedObj
           }
         })
+        toast.success("Numero agregado")
       }
-      setError("")
       setInputs("")
     }
 
@@ -70,7 +80,7 @@ const Calculated = () => {
       repeated: {}
     })
 
-    window.alert("Tabla Limpia") //clear table toast
+    toast.success("Tabla Limpiada")
   }
 
   return (
@@ -85,11 +95,12 @@ const Calculated = () => {
           type="text"
           onKeyDown={(e) => handleInput(e)}
         />
-        {error && <p className="text-red-500 pt-2">{error}</p> }
 
-        <div className="w-full self-center">
-          <button className="w-full bg-gray-200 hover:bg-gray-500 hover:text-gray-100 p-2 text-gray-800 rounded" onClick={handleClearTable}>Limpiar Tabla</button>
-        </div>
+        {total.numbers.length > 0 && (
+          <div className="w-full self-center">
+            <button className="w-full bg-gray-200 hover:bg-gray-500 hover:text-gray-100 p-2 text-gray-800 rounded" onClick={handleClearTable}>Limpiar Tabla</button>
+          </div>
+        )}
       </section>
 
 
