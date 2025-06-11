@@ -49,6 +49,7 @@ const ProConsPage = () => {
           name="addpro"
           id="add-pro"
           placeholder="Add Pro"
+          enterKeyHint = "send"
         />
         <div>
           <h1 className="text-green-500 font-bold text-4xl text-center">PRO</h1>
@@ -72,6 +73,7 @@ const ProConsPage = () => {
           name="addcons"
           id="add-cons"
           placeholder="Add Cons"
+          enterKeyHint = "send"
         />
         <h1 className="text-red-500 font-bold text-4xl text-center">CONS</h1>
         <ul className="list-outside marker:text-red-500 list-disc ms-5 self-start flex flex-col gap-2 mt-4">

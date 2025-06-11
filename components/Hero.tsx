@@ -12,9 +12,11 @@ const Hero = () => {
       </p>
       <Link
         href="#card-collection"
-        className="mt-8"
+        className="group mt-8 border-2 border-gray-200 rounded-md p-3 hover:bg-gray-200 transition-colors duration-300"
+        aria-label="Scroll down to app collection"
       >
         <Image
+        className="group-hover:translate-y-1 text-gray-200 group-hover:filter group-hover:grayscale group-hover:brightness-0 group-hover:invert-0 transition-transform duration-300"
           src={"/svgs/downArrow.svg"}
           width={50}
           height={50}
