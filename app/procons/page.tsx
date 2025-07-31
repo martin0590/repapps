@@ -38,14 +38,14 @@ const ProConsPage = () => {
   };
 
   return (
-    <section className="w-full text-gray-800 bg-gray-300 min-h-screen grid grid-cols-2">
+    <section className="w-full text-gray-800 bg-gray-950 min-h-screen grid grid-cols-2">
       <div className="pt-2 pl-2 border-r border-r-slate-700 flex flex-col items-center gap-2 relative">
         <input
           value={proState}
           onKeyDown={handleAddPro}
           onChange={(e) => setProState(e.target.value)}
           type="text"
-          className={`w-[90%] px-2 focus:outline focus:outline-green-500 placeholder:text-center text-gray-800 py-2 text-xl`}
+          className={`rounded-sm w-[90%] px-2 focus:outline focus:outline-green-500 placeholder:text-center text-gray-800 py-2 text-xl`}
           name="addpro"
           id="add-pro"
           placeholder="Add Pro"
@@ -56,7 +56,7 @@ const ProConsPage = () => {
         </div>
         <ul className="list-outside list-disc marker:text-green-500 ms-5 self-start flex flex-col gap-2 mt-4">
           {proconsState.pro.map((pro, index) => (
-            <li key={index} className="break-all text-2xl">
+            <li key={index} className="break-all text-2xl text-gray-200">
               {pro}
             </li>
           ))}
@@ -69,7 +69,7 @@ const ProConsPage = () => {
           onKeyDown={handleAddPro}
           onChange={(e) => setConsState(e.target.value)}
           type="text"
-          className="w-[90%] px-2 focus:outline focus:outline-red-500 placeholder:text-center text-gray-800 py-2 text-xl"
+          className="rounded-sm w-[90%] px-2 focus:outline focus:outline-red-500 placeholder:text-center text-gray-800 py-2 text-xl"
           name="addcons"
           id="add-cons"
           placeholder="Add Cons"
@@ -78,7 +78,7 @@ const ProConsPage = () => {
         <h1 className="text-red-500 font-bold text-4xl text-center">CONS</h1>
         <ul className="list-outside marker:text-red-500 list-disc ms-5 self-start flex flex-col gap-2 mt-4">
           {proconsState.cons.map((cons, index) => (
-            <li key={index} className="break-all text-2xl">
+            <li key={index} className="break-all text-2xl text-gray-200">
               {cons}
             </li>
           ))}
