@@ -26,6 +26,13 @@ export const links = [
     image: '/images/calculated.png',
     url: '/calculated',
     description: 'Arma una lista de numeros y sumalos. Tambien puedes idenficarlos agregandoles un nombre.'
+  },
+  {
+    id: 5,
+    title: 'Amazon link shortener',
+    image: '/images/amzn-link-shortener.png',
+    url: '/amzn-link-shortener',
+    description: 'Reduce el tamaño de los links de productos de Amazon.'
   }
 
 ]
